@@ -6,5 +6,9 @@ pred_file: batch_decisions.csv
 params:
   audit_budget_per_batch: 20
   max_error_rate: 0.05
+  sampling_strategy: stratified
+  allocation: proportional
+  # null = fixed budget, same as baseline. Use [15, 20] for the sequential variant.
+  audit_stages: null
 eval_params:
   max_hold_rate: 0.4  # guardrail: primary only valid if HOLD rate stays below this

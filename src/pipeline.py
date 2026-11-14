@@ -85,6 +85,10 @@ def decide(ctx: RunContext, final: pd.DataFrame) -> Decision:
 
 
 def run(ctx: RunContext) -> None:
+    if ctx.track == "t12":
+        # T12 implements the 5 steps (load, select, estimate, review, decide) in src/tracks/t12.py.
+        from .tracks.t12 import run as run_t12
+        return run_t12(ctx)
     spec = get_track(ctx.track)
     data = load(ctx)
     scored = process(ctx, data)
