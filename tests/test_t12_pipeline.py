@@ -77,7 +77,7 @@ def test_stale_review_is_rejected_when_sampling_protocol_changes(tmp_path):
     out = tmp_path / "poc"
     args = ["--config", str(config), "--output", str(out), "--offline"]
     assert main(args) == 0
-    queue = pd.read_csv(out / "review_queue.csv").fillna("")
+    queue = pd.read_csv(out / "review_queue.csv", dtype=str).fillna("")
     queue.loc[0, ["reviewer", "reviewer_decision"]] = ["Test reviewer", "approve"]
     queue.to_csv(out / "review_queue_reviewed.csv", index=False)
     cfg = yaml.safe_load(config.read_text(encoding="utf-8"))
@@ -139,7 +139,7 @@ def test_manual_accept_cannot_bypass_uncertainty_and_failed_run_has_no_stale_pre
     out = tmp_path / "poc"
     args = ["--config", str(config), "--output", str(out), "--offline"]
     assert main(args) == 0
-    queue = pd.read_csv(out / "review_queue.csv").fillna("")
+    queue = pd.read_csv(out / "review_queue.csv", dtype=str).fillna("")
     queue.loc[0, ["reviewer", "reviewer_decision", "override_value", "review_note"]] = [
         "Test reviewer", "edit", "ACCEPT", "Try to bypass uncertainty"]
     queue.to_csv(out / "review_queue_reviewed.csv", index=False)
@@ -195,7 +195,7 @@ def test_offline_end_to_end_and_human_override(tmp_path):
     assert (out / "contact_sheet.html").exists()
     assert json.loads((out / "run_info.json").read_text())["stats"]["n_items"] == 500
     before = (out / "batch_decisions_raw.csv").read_bytes()
-    queue = pd.read_csv(out / "review_queue.csv").fillna("")
+    queue = pd.read_csv(out / "review_queue.csv", dtype=str).fillna("")
     queue.loc[0, ["reviewer", "reviewer_decision", "override_value", "review_note"]] = [
         "Test reviewer", "edit", "REWORK", "Manual correction requested"]
     queue.to_csv(out / "review_queue_reviewed.csv", index=False)
@@ -297,7 +297,7 @@ def test_invalid_reviewer_cannot_change_decision(tmp_path):
     out = tmp_path / "poc"
     args = ["--config", str(config), "--output", str(out), "--offline"]
     assert main(args) == 0
-    queue = pd.read_csv(out / "review_queue.csv").fillna("")
+    queue = pd.read_csv(out / "review_queue.csv", dtype=str).fillna("")
     queue.loc[0, ["reviewer_decision", "override_value"]] = ["edit", "ACCEPT"]
     queue.to_csv(out / "review_queue_reviewed.csv", index=False)
     assert main(args) == 2
@@ -309,3 +309,91 @@ def test_demo_includes_comparison_and_trivial_controls(tmp_path):
     assert "simulated_poc" in (tmp_path / "table_baseline_vs_poc.md").read_text(encoding="utf-8")
     assert (tmp_path / "metrics_all_hold.json").exists()
     assert (tmp_path / "metrics_all_rework.json").exists()
+
+
+# QA additions for Nguyen Chi Tai: exercise the review CSV through the real runner.
+def test_review_escalation_holds_rework_batch_and_preserves_audit_evidence(tmp_path):
+    config, _ = prepare(tmp_path / "demo", 42)
+    out = tmp_path / "poc"
+    args = ["--config", str(config), "--output", str(out), "--offline"]
+    assert main(args) == 0
+    raw_before = (out / "batch_decisions_raw.csv").read_bytes()
+    original = pd.read_csv(out / "batch_decisions.csv").set_index("batch_id")
+    queue = pd.read_csv(out / "review_queue.csv", dtype=str).fillna("")
+    target = queue.index[queue.suggested_action.eq("REWORK")][0]
+    batch_id = queue.loc[target, "item_id"]
+    note = "Escalate simulated vendor evidence for a second independent review."
+    queue.loc[target, ["reviewer", "reviewer_decision", "review_note"]] = [
+        "QA test reviewer", "escalate", note]
+    queue.to_csv(out / "review_queue_reviewed.csv", index=False)
+    events_before = (out / "audit_log.jsonl").read_bytes()
+
+    assert main(args) == 0
+
+    final = pd.read_csv(out / "batch_decisions.csv").set_index("batch_id")
+    assert final.loc[batch_id, "decision"] == "HOLD"
+    assert final.loc[batch_id, "reason_code"] == "HUMAN_OVERRIDE"
+    assert final.loc[batch_id, "owner"] == "QA test reviewer"
+    assert final.loc[batch_id, "reason"] == note
+    pd.testing.assert_frame_equal(final.drop(index=batch_id), original.drop(index=batch_id))
+    assert (out / "batch_decisions_raw.csv").read_bytes() == raw_before
+    audit_bytes = (out / "audit_log.jsonl").read_bytes()
+    assert audit_bytes.startswith(events_before)  # replay must append, never erase history
+    events = [json.loads(line) for line in audit_bytes[len(events_before):].splitlines()]
+    reviews = [event for event in events if event["action"] == "batch_review:escalate"]
+    assert len(reviews) == 1
+    assert reviews[0]["item_id"] == batch_id
+    assert reviews[0]["actor"] == "QA test reviewer"
+    assert (reviews[0]["before"], reviews[0]["after"], reviews[0]["reason"]) == (
+        "REWORK", "HOLD", note)
+    gate = json.loads((out / "quality_gate.json").read_text(encoding="utf-8"))
+    assert gate["hold_rate"] == pytest.approx(final.decision.eq("HOLD").mean())
+    assert gate["hold_guardrail_pass"] is False
+
+
+@pytest.mark.parametrize("note", ["", "   "], ids=["empty", "whitespace"])
+def test_review_override_requires_explanation_and_removes_stale_outputs(tmp_path, capsys, note):
+    config, _ = prepare(tmp_path / "demo", 42)
+    out = tmp_path / "poc"
+    args = ["--config", str(config), "--output", str(out), "--offline"]
+    assert main(args) == 0
+    queue = pd.read_csv(out / "review_queue.csv", dtype=str).fillna("")
+    queue.loc[0, ["reviewer", "reviewer_decision", "override_value", "review_note"]] = [
+        "QA test reviewer", "edit", "REWORK", note]
+    queue.to_csv(out / "review_queue_reviewed.csv", index=False)
+
+    assert main(args) == 2
+
+    assert "nonempty review_note" in capsys.readouterr().err
+    for filename in ["batch_decisions.csv", "decision.json", "quality_gate.json"]:
+        assert not (out / filename).exists()
+    info = json.loads((out / "run_info.json").read_text(encoding="utf-8"))
+    assert info["status"] == 2
+    events = [json.loads(line) for line in (out / "audit_log.jsonl").read_text(encoding="utf-8").splitlines()]
+    assert not any(event["action"].startswith("batch_review:") for event in events)
+
+
+@pytest.mark.parametrize("invalid_id", ["duplicate", "unknown"])
+def test_review_rejects_duplicate_or_unknown_batch_ids(tmp_path, capsys, invalid_id):
+    config, _ = prepare(tmp_path / "demo", 42)
+    out = tmp_path / "poc"
+    args = ["--config", str(config), "--output", str(out), "--offline"]
+    assert main(args) == 0
+    reviewed = pd.read_csv(out / "review_queue.csv", dtype=str).fillna("").iloc[[0]].copy()
+    reviewed.loc[:, "reviewer"] = "QA test reviewer"
+    reviewed.loc[:, "reviewer_decision"] = "approve"
+    if invalid_id == "duplicate":
+        reviewed = pd.concat([reviewed, reviewed], ignore_index=True)
+    else:
+        reviewed.loc[:, "item_id"] = "UNKNOWN_BATCH_NOT_IN_INPUT"
+    reviewed.to_csv(out / "review_queue_reviewed.csv", index=False)
+
+    assert main(args) == 2
+
+    assert "duplicate or unknown batch IDs" in capsys.readouterr().err
+    assert not (out / "batch_decisions.csv").exists()
+    assert not (out / "decision.json").exists()
+    info = json.loads((out / "run_info.json").read_text(encoding="utf-8"))
+    assert info["status"] == 2
+    events = [json.loads(line) for line in (out / "audit_log.jsonl").read_text(encoding="utf-8").splitlines()]
+    assert not any(event["action"].startswith("batch_review:") for event in events)
