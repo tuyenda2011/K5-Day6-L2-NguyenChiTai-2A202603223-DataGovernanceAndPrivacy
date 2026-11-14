@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="vi"><head><meta charset="utf-8"><title>T12 - Batch audit: confidence bands and decisions</title>
+<style>
+body{font-family:system-ui,sans-serif;margin:16px;background:#fafafa;color:#222}
+header{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:12px}
+.grid{display:flex;flex-wrap:wrap;gap:12px}
+.card{background:#fff;border:1px solid #ddd;border-radius:8px;padding:8px;width:min(100%,620px)}
+.imgs{display:flex;gap:6px;flex-wrap:wrap} figure{margin:0} figcaption{font-size:11px;color:#666}
+.meta{font-size:12px;margin:6px 0;word-break:break-all}
+select,input{font-size:12px;margin:2px 0;width:100%;box-sizing:border-box}
+.missing{color:#b00;font-size:12px}
+button{padding:6px 12px}
+</style></head><body>
+<header><h2 style="margin:0">T12 - Batch audit: confidence bands and decisions</h2><span>N = 5</span>
+<label>Reviewer (bắt buộc): <input id="reviewer" style="width:180px"></label>
+<button onclick="exportCsv()">Export decisions CSV</button></header>
+<div class="grid"><div class="card" data-item="V3" data-rank="1" data-score="1.56"><div class="imgs"></div><div class="meta"><div><b>rank</b>: 1</div><div><b>item_id</b>: V3</div><div><b>score</b>: 1.56</div><div><b>reason</b>: 20/100 audited; estimate=0.1040; 95% CI=[0.0200, 0.5800]; limit=0.0500; p_accept=1.0000; p_rework=0.2322 (reject if &lt; 0.0250); selection=43e8d8c58f32</div><div><b>suggested_action</b>: HOLD</div><div><b>slice</b>: </div></div><select class="dec"><option value="">— decision —</option><option value="approve">approve</option><option value="reject">reject</option><option value="edit">edit</option><option value="escalate">escalate</option><option value="skip">skip</option></select><input class="ov" placeholder="override value (optional)"><input class="note" placeholder="reason / note"></div>
+<div class="card" data-item="V4" data-rank="2" data-score="1.55"><div class="imgs"></div><div class="meta"><div><b>rank</b>: 2</div><div><b>item_id</b>: V4</div><div><b>score</b>: 1.55</div><div><b>reason</b>: 20/100 audited; estimate=0.0500; 95% CI=[0.0100, 0.5600]; limit=0.0500; p_accept=0.6556; p_rework=0.6878 (reject if &lt; 0.0250); selection=43e8d8c58f32</div><div><b>suggested_action</b>: HOLD</div><div><b>slice</b>: </div></div><select class="dec"><option value="">— decision —</option><option value="approve">approve</option><option value="reject">reject</option><option value="edit">edit</option><option value="escalate">escalate</option><option value="skip">skip</option></select><input class="ov" placeholder="override value (optional)"><input class="note" placeholder="reason / note"></div>
+<div class="card" data-item="V1" data-rank="3" data-score="1.5"><div class="imgs"></div><div class="meta"><div><b>rank</b>: 3</div><div><b>item_id</b>: V1</div><div><b>score</b>: 1.5</div><div><b>reason</b>: 20/100 audited; estimate=0.0000; 95% CI=[0.0000, 0.5000]; limit=0.0500; p_accept=0.2683; p_rework=1.0000 (reject if &lt; 0.0250); selection=43e8d8c58f32</div><div><b>suggested_action</b>: HOLD</div><div><b>slice</b>: </div></div><select class="dec"><option value="">— decision —</option><option value="approve">approve</option><option value="reject">reject</option><option value="edit">edit</option><option value="escalate">escalate</option><option value="skip">skip</option></select><input class="ov" placeholder="override value (optional)"><input class="note" placeholder="reason / note"></div>
+<div class="card" data-item="V2" data-rank="4" data-score="1.5"><div class="imgs"></div><div class="meta"><div><b>rank</b>: 4</div><div><b>item_id</b>: V2</div><div><b>score</b>: 1.5</div><div><b>reason</b>: 20/100 audited; estimate=0.0000; 95% CI=[0.0000, 0.5000]; limit=0.0500; p_accept=0.2618; p_rework=1.0000 (reject if &lt; 0.0250); selection=43e8d8c58f32</div><div><b>suggested_action</b>: HOLD</div><div><b>slice</b>: </div></div><select class="dec"><option value="">— decision —</option><option value="approve">approve</option><option value="reject">reject</option><option value="edit">edit</option><option value="escalate">escalate</option><option value="skip">skip</option></select><input class="ov" placeholder="override value (optional)"><input class="note" placeholder="reason / note"></div>
+<div class="card" data-item="V5" data-rank="5" data-score="0.57"><div class="imgs"></div><div class="meta"><div><b>rank</b>: 5</div><div><b>item_id</b>: V5</div><div><b>score</b>: 0.57</div><div><b>reason</b>: 20/100 audited; estimate=0.3465; 95% CI=[0.0700, 0.6400]; limit=0.0500; p_accept=1.0000; p_rework=0.0000 (reject if &lt; 0.0250); selection=43e8d8c58f32</div><div><b>suggested_action</b>: REWORK</div><div><b>slice</b>: </div></div><select class="dec"><option value="">— decision —</option><option value="approve">approve</option><option value="reject">reject</option><option value="edit">edit</option><option value="escalate">escalate</option><option value="skip">skip</option></select><input class="ov" placeholder="override value (optional)"><input class="note" placeholder="reason / note"></div></div>
+<script>
+const ROWS = [{"rank": "1", "item_id": "V3", "score": "1.56", "reason": "20/100 audited; estimate=0.1040; 95% CI=[0.0200, 0.5800]; limit=0.0500; p_accept=1.0000; p_rework=0.2322 (reject if < 0.0250); selection=43e8d8c58f32", "suggested_action": "HOLD", "slice": "", "evidence_path": "", "reviewer": "", "reviewer_decision": "", "override_value": "", "review_note": "", "reviewed_at": ""}, {"rank": "2", "item_id": "V4", "score": "1.55", "reason": "20/100 audited; estimate=0.0500; 95% CI=[0.0100, 0.5600]; limit=0.0500; p_accept=0.6556; p_rework=0.6878 (reject if < 0.0250); selection=43e8d8c58f32", "suggested_action": "HOLD", "slice": "", "evidence_path": "", "reviewer": "", "reviewer_decision": "", "override_value": "", "review_note": "", "reviewed_at": ""}, {"rank": "3", "item_id": "V1", "score": "1.5", "reason": "20/100 audited; estimate=0.0000; 95% CI=[0.0000, 0.5000]; limit=0.0500; p_accept=0.2683; p_rework=1.0000 (reject if < 0.0250); selection=43e8d8c58f32", "suggested_action": "HOLD", "slice": "", "evidence_path": "", "reviewer": "", "reviewer_decision": "", "override_value": "", "review_note": "", "reviewed_at": ""}, {"rank": "4", "item_id": "V2", "score": "1.5", "reason": "20/100 audited; estimate=0.0000; 95% CI=[0.0000, 0.5000]; limit=0.0500; p_accept=0.2618; p_rework=1.0000 (reject if < 0.0250); selection=43e8d8c58f32", "suggested_action": "HOLD", "slice": "", "evidence_path": "", "reviewer": "", "reviewer_decision": "", "override_value": "", "review_note": "", "reviewed_at": ""}, {"rank": "5", "item_id": "V5", "score": "0.57", "reason": "20/100 audited; estimate=0.3465; 95% CI=[0.0700, 0.6400]; limit=0.0500; p_accept=1.0000; p_rework=0.0000 (reject if < 0.0250); selection=43e8d8c58f32", "suggested_action": "REWORK", "slice": "", "evidence_path": "", "reviewer": "", "reviewer_decision": "", "override_value": "", "review_note": "", "reviewed_at": ""}];
+const COLS = ["rank","item_id","score","reason","suggested_action","slice","evidence_path",
+              "reviewer","reviewer_decision","override_value","review_note","reviewed_at"];
+function esc(v){v = (v===undefined||v===null)?"":String(v); return /[",\n]/.test(v)?'"'+v.replace(/"/g,'""')+'"':v;}
+function exportCsv(){
+  const reviewer = document.getElementById('reviewer').value.trim();
+  if(!reviewer){alert('Nhập tên reviewer trước khi export'); return;}
+  const now = new Date().toISOString();
+  const cards = document.querySelectorAll('.card');
+  const lines = [COLS.join(',')];
+  cards.forEach((c,i)=>{
+    const r = Object.assign({}, ROWS[i]);
+    const dec = c.querySelector('.dec').value;
+    r.reviewer = dec ? reviewer : ''; r.reviewer_decision = dec;
+    r.override_value = c.querySelector('.ov').value; r.review_note = c.querySelector('.note').value;
+    r.reviewed_at = dec ? now : '';
+    lines.push(COLS.map(k=>esc(r[k])).join(','));
+  });
+  const blob = new Blob([lines.join('\n')+'\n'], {type:'text/csv'});
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob);
+  a.download = 'review_queue_reviewed.csv'; a.click();
+}
+</script></body></html>

@@ -1,0 +1,6 @@
+batch_id,look,n_audited,errors,est_error_rate,ci_low,ci_high,decision,p_accept,p_rework,decision_method,accept_supported,alpha_spent,stop_reason
+V1,1,20,0,0.0,0.0,0.5,HOLD,0.26834945298874263,1.0,exact_threshold_test,False,0.05,BUDGET_EXHAUSTED
+V2,1,20,0,0.0,0.0,0.5,HOLD,0.2618487394957984,1.0,exact_threshold_test,False,0.05,BUDGET_EXHAUSTED
+V3,1,20,2,0.10400000000000001,0.02,0.5800000000000001,HOLD,1.0,0.23219373219373218,exact_threshold_test,False,0.05,BUDGET_EXHAUSTED
+V4,1,20,1,0.05,0.01,0.56,HOLD,0.655583065349991,0.6878175879285758,exact_threshold_test,False,0.05,BUDGET_EXHAUSTED
+V5,1,20,7,0.3465384615384615,0.06999999999999999,0.64,REWORK,1.0,0.0,exact_threshold_test,False,0.05,BOUND_CROSSED

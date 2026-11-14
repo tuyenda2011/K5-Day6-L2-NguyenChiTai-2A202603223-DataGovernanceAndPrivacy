@@ -1,0 +1,34 @@
+{
+  "track": "t12",
+  "run_name": "simulated_poc_reviewed",
+  "status": 0,
+  "seed": 42,
+  "offline": true,
+  "input": "out\\t12_demo\\input",
+  "output": "out\\t12_demo\\poc",
+  "pipeline": "src.pipeline",
+  "config_hash": "cd677ccb290c",
+  "git_sha": "aabff13",
+  "runtime_seconds": 0.1517,
+  "stats": {
+    "n_reviewed": 5,
+    "n_items": 500,
+    "n_batches": 5,
+    "n_audited": 100,
+    "hold_rate": 0.8,
+    "hold_guardrail_pass": false,
+    "sampling_strategy": "stratified",
+    "allocation": "proportional",
+    "audit_labels": "out\\t12_demo\\input\\gt\\hidden_errors.csv"
+  },
+  "machine": {
+    "python": "3.13.17",
+    "platform": "Windows-10-10.0.19045-SP0",
+    "processor": "Intel64 Family 6 Model 141 Stepping 1, GenuineIntel"
+  },
+  "output_check": {
+    "pred_file": "out\\t12_demo\\poc\\batch_decisions.csv",
+    "exists": true,
+    "missing_columns": []
+  }
+}

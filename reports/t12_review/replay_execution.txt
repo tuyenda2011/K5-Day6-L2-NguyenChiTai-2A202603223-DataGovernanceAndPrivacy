@@ -1,0 +1,2 @@
+[main] track=t12 (Vendor Batch Acceptance) input=out\t12_demo\input output=out\t12_demo\poc seed=42 offline=True pipeline=src.pipeline
+[main] status=0 runtime=0.1517s -> out\t12_demo\poc\run_info.json

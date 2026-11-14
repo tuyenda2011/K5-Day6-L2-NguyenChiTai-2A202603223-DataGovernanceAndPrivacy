@@ -1,0 +1,46 @@
+{
+  "recorded_at": "2026-11-14T23:49:27+00:00",
+  "reviewer": "Nguyễn Chí Tài (2A202603223)",
+  "simulated": true,
+  "method": "User explicitly confirmed the five presented decisions in chat; Codex transcribed to CSV.",
+  "user_response": "Xác nhận cả 5 quyết định",
+  "presented_evidence": {
+    "V1": {
+      "audited_errors": 0,
+      "n_audited": 20,
+      "ci_low": 0.0,
+      "ci_high": 0.5
+    },
+    "V2": {
+      "audited_errors": 0,
+      "n_audited": 20,
+      "ci_low": 0.0,
+      "ci_high": 0.5
+    },
+    "V3": {
+      "audited_errors": 2,
+      "n_audited": 20,
+      "ci_low": 0.02,
+      "ci_high": 0.5800000000000001
+    },
+    "V4": {
+      "audited_errors": 1,
+      "n_audited": 20,
+      "ci_low": 0.01,
+      "ci_high": 0.56
+    },
+    "V5": {
+      "audited_errors": 7,
+      "n_audited": 20,
+      "ci_low": 0.06999999999999999,
+      "ci_high": 0.64
+    }
+  },
+  "confirmed_decisions": {
+    "V1": "escalate -> HOLD",
+    "V2": "escalate -> HOLD",
+    "V3": "escalate -> HOLD",
+    "V4": "escalate -> HOLD",
+    "V5": "approve -> REWORK"
+  }
+}

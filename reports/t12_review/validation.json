@@ -1,0 +1,8 @@
+{
+  "automated_checks_passed": true,
+  "errors": [],
+  "batches": 5,
+  "audited_samples": 100,
+  "hold_guardrail_pass": false,
+  "human_review_complete": true
+}

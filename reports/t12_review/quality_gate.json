@@ -1,0 +1,7 @@
+{
+  "hold_rate": 0.8,
+  "max_hold_rate": 0.4,
+  "hold_guardrail_pass": false,
+  "budget_violations": 0,
+  "note": "Execution success does not imply the quality guardrail passes."
+}

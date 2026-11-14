@@ -1,0 +1,43 @@
+{
+  "policy": {
+    "max_error_rate": 0.05,
+    "audit_budget_per_batch": 20,
+    "confidence_level": 0.95,
+    "decisions": [
+      "ACCEPT",
+      "REWORK",
+      "HOLD"
+    ]
+  },
+  "strategy": "stratified",
+  "seed": 42,
+  "policy_sha256": "4cdbb931af067052de51522b0c41c3139fe852ba17a22310d5da7724081b94df",
+  "batch_sha256": "9c00337015e9a796b2ecda0ea34af684df47cc559ba2e4b58bab359eeea79ce8",
+  "pipeline_sha256": "548da74b0345bee76e2434f439d229d11b2be881e867b531f5dc0ab6fa8ce01d",
+  "confidence_method": "hypergeometric inversion; Bonferroni across strata and scheduled looks within each batch",
+  "decision_method": "exact one-sided test of the stratified estimator at the limit (sup over error allocations), alpha/2 per direction per look; Bonferroni CI rule as fallback",
+  "fixed_sample": true,
+  "stages": {
+    "V1": [
+      20
+    ],
+    "V2": [
+      20
+    ],
+    "V3": [
+      20
+    ],
+    "V4": [
+      20
+    ],
+    "V5": [
+      20
+    ]
+  },
+  "allocation": "proportional",
+  "protocol_version": 3,
+  "confidence_level": 0.95,
+  "config_conflicts_ignored": {},
+  "sequential_estimate_caveat": "Point estimates at optional stopping may be biased; CI spends alpha across looks.",
+  "input_items": 500
+}
