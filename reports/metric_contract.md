@@ -19,7 +19,7 @@
 | Chỉ số lỗi xấu (miss / false alarm / false reject) | Nặng nhất là bỏ lọt (batch xấu bị ACCEPT, tức 1 − Recall). Tiếp theo là REWORK nhầm batch tốt (false reject rate) và tỉ lệ HOLD (guardrail ≤ 0.4) |
 | Slices sẽ báo cáo (≥2) | Từng batch (phần `slices` của evaluator) và từng nhóm `risk_tag` trong mỗi batch (`stratum_estimates.csv`) |
 | Cách báo độ bất định khi N nhỏ (Wilson CI / bootstrap) | Khoảng tin cậy chính xác cho quần thể hữu hạn, tính từ phân phối hypergeometric vì mẫu được lấy không hoàn lại. Với PoC, khoảng của từng nhóm `risk_tag` được tính ở mức α/H (Bonferroni, H là số nhóm) rồi cộng theo trọng số kích thước nhóm. Mỗi batch đều ghi kèm `n_audited`, `ci_low`, `ci_high`, `p_accept`, `p_rework` và `decision_method`. Khoảng tin cậy dùng để báo cáo, còn quyết định dựa vào kiểm định ở dòng threshold |
-| Ngày giờ chốt + người chốt | 2026-11-14 (protocol v3) · người chốt: ____ |
+| Ngày giờ chốt + người chốt | 2026-11-14 (protocol v3) · người chốt: Đặng Anh Tuyền |
 
 Nếu baseline = 0 thì ghi rõ "baseline = 0" thay vì phần trăm cải thiện.
 

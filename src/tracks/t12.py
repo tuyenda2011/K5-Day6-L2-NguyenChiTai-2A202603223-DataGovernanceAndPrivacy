@@ -186,7 +186,8 @@ def inspect_batch(plan, population, confidence, threshold, stages, oracle):
         for row in evidence:
             row["confidence_level"] = look_confidence
             row["simultaneous_batch_confidence"] = confidence
-        alpha_look = (1 - confidence) / len(stages)
+        # round away float noise: (1 - 0.95) / 2 would otherwise be 0.025000000000000022
+        alpha_look = round((1 - confidence) / len(stages), 12)
         tested = threshold_test(evidence, population, threshold)
         if tested is None:  # enumeration too large: fall back to the (more conservative) CI rule
             decision, code = classify(low, high, threshold)

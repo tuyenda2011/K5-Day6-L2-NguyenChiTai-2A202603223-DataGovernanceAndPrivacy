@@ -3,7 +3,7 @@
 # the track defaults loaded from `track_config`.
 # ============================================================
 group_id: Nhóm tự do                     # e.g. G07
-owner: "Tuyền (thành viên)"   # mandatory for every Decision
+owner: "Đặng Anh Tuyền"   # mandatory for every Decision
 track_config: tracks/t12.yaml
 track: t12
 input: fixtures/t12_vendor_batches
