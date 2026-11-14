@@ -1,0 +1,7 @@
+variant,simulated,seed,total_audits,audits_per_decision,early_stopped_batches,mae,bad_batch_miss_rate,hold_rate,false_reject_rate,ci_coverage,budget_violations
+baseline,True,42,100,20.0,0,0.06000000000000001,0.0,0.8,0.0,0.8,0.0
+poc,True,42,100,20.0,0,0.042107692307692304,0.0,0.8,0.0,1.0,0.0
+balanced,True,42,100,20.0,0,0.04320000000000002,0.0,1.0,0.0,1.0,0.0
+sequential,True,42,95,19.0,1,0.045599999999999995,0.0,0.8,0.0,1.0,0.0
+all_hold,True,42,100,20.0,0,0.06000000000000001,0.0,1.0,0.0,0.8,0.0
+all_rework,True,42,100,20.0,0,0.06000000000000001,0.0,0.0,1.0,0.8,0.0
