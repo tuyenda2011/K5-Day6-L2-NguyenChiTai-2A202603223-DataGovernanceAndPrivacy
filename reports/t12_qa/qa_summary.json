@@ -1,0 +1,21 @@
+{
+  "recorded_at": "2026-11-14T23:49:24+00:00",
+  "source_commit": "aabff139b35d0ff1d41c9daea0d20df1b23956d9",
+  "tests": {
+    "tests": 122,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 39,
+    "passed": 83
+  },
+  "tests_exit_code": 0,
+  "manifests_exit_code": 0,
+  "manifests_output": "OK   fixtures\\t01_coverage\\manifest.csv\nOK   fixtures\\t02_raw_qc\\manifest.csv\nOK   fixtures\\t03_synthetic\\manifest.csv\nOK   fixtures\\t04_sensor_sync\\manifest.csv\nOK   fixtures\\t05_near_duplicate\\manifest.csv\nOK   fixtures\\t06_release_gate\\manifest.csv\nOK   fixtures\\t07_redaction\\manifest.csv\nOK   fixtures\\t08_deletion\\manifest.csv\nOK   fixtures\\t09_privacy_gate\\manifest.csv\nOK   fixtures\\t10_domain_shift\\manifest.csv\nOK   fixtures\\t11_label_errors\\manifest.csv\nOK   fixtures\\t12_vendor_batches\\manifest.csv\nOK   fixtures\\t13_rare_mining\\manifest.csv\nOK   fixtures\\t14_auto_annotation\\manifest.csv\n14 manifests, 0 failing\n",
+  "machine": {
+    "python": "3.13.17",
+    "platform": "Windows-10-10.0.19045-SP0",
+    "processor": "Intel64 Family 6 Model 141 Stepping 1, GenuineIntel"
+  },
+  "official_overlay_available": false,
+  "note": "39 tests require undistributed instructor ground truth and are skipped; no official result claimed."
+}

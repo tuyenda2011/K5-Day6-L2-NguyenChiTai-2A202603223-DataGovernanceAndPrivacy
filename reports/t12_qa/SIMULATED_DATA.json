@@ -1,0 +1,21 @@
+{
+  "simulated": true,
+  "seed": 42,
+  "notice": "Invented labels for local testing only; NOT instructor/official results.",
+  "scenarios": [
+    0.01,
+    0.03,
+    0.08,
+    0.15,
+    0.3
+  ],
+  "risk_weights": {
+    "normal": 1.0,
+    "night": 3.0,
+    "small_object": 4.0,
+    "occlusion": 3.0
+  },
+  "generator_version": 2,
+  "label_rng_domain": 12001,
+  "sampling_seed": 42
+}

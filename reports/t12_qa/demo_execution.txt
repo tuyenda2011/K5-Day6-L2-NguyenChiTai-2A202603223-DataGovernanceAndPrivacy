@@ -1,0 +1,183 @@
+SIMULATED LABELS ONLY - not official evaluation
+[main] track=t12 (Vendor Batch Acceptance) input=out\t12_demo\input output=out\t12_demo\baseline seed=42 offline=True pipeline=src.examples.t12_baseline
+[main] status=0 runtime=0.1228s -> out\t12_demo\baseline\run_info.json
+[main] track=t12 (Vendor Batch Acceptance) input=out\t12_demo\input output=out\t12_demo\poc seed=42 offline=True pipeline=src.pipeline
+[main] status=0 runtime=0.1131s -> out\t12_demo\poc\run_info.json
+[main] track=t12 (Vendor Batch Acceptance) input=out\t12_demo\input output=out\t12_demo\balanced seed=42 offline=True pipeline=src.pipeline
+[main] status=0 runtime=0.1213s -> out\t12_demo\balanced\run_info.json
+[main] track=t12 (Vendor Batch Acceptance) input=out\t12_demo\input output=out\t12_demo\sequential seed=42 offline=True pipeline=src.pipeline
+[main] status=0 runtime=0.186s -> out\t12_demo\sequential\run_info.json
+
+== T12 · Vendor Batch Acceptance · run=simulated_baseline
+   gt=out\t12_demo\input\gt\batch_truth.csv
+   pred=out\t12_demo\baseline\batch_decisions.csv
+   params={'max_hold_rate': 0.4}
+                           metric slice  value direction  num  den   N                                                                  unit
+MAE error-rate estimate [PRIMARY]   all   0.06     lower  NaN  NaN 5.0                             mean |est - true| over batches (fraction)
+       Bad-batch Recall [PRIMARY]   all   1.00    higher  3.0  3.0 NaN bad batches not ACCEPTed / bad batches (reported separately from MAE)
+                False reject rate   all   0.00     lower  0.0  2.0 NaN                            good batches sent to REWORK / good batches
+                        HOLD rate   all   0.80     lower  4.0  5.0 NaN                                             batches on HOLD / batches
+                      CI coverage   all   0.80    higher  NaN  NaN 5.0          batches whose CI contains true rate / batches (nominal 0.95)
+                Budget violations   all   0.00     lower  NaN  NaN 5.0                                       batches audited above budget 20
+      Guardrail: HOLD rate <= 0.4   all   0.00    higher  NaN  NaN NaN                              1 = pass, 0 = fail (constrained primary)
+
+-- slices
+slice  true_error_rate  est_error_rate    dec  is_bad
+   V1             0.01            0.00   HOLD       0
+   V2             0.03            0.05   HOLD       0
+   V3             0.08            0.10   HOLD       1
+   V4             0.15            0.15   HOLD       1
+   V5             0.30            0.55 REWORK       1
+note: guardrail HOLD rate <= 0.4: FAIL — primary metric is not valid on its own (value=0.8)
+note: missing decision = ACCEPT; report the trivial all-HOLD / all-REWORK baselines next to your PoC
+
+wrote out\t12_demo\metrics_baseline.json
+
+== T12 · Vendor Batch Acceptance · run=simulated_poc
+   gt=out\t12_demo\input\gt\batch_truth.csv
+   pred=out\t12_demo\poc\batch_decisions.csv
+   params={'max_hold_rate': 0.4}
+                           metric slice    value direction  num  den   N                                                                  unit
+MAE error-rate estimate [PRIMARY]   all 0.042108     lower  NaN  NaN 5.0                             mean |est - true| over batches (fraction)
+       Bad-batch Recall [PRIMARY]   all 1.000000    higher  3.0  3.0 NaN bad batches not ACCEPTed / bad batches (reported separately from MAE)
+                False reject rate   all 0.000000     lower  0.0  2.0 NaN                            good batches sent to REWORK / good batches
+                        HOLD rate   all 0.800000     lower  4.0  5.0 NaN                                             batches on HOLD / batches
+                      CI coverage   all 1.000000    higher  NaN  NaN 5.0          batches whose CI contains true rate / batches (nominal 0.95)
+                Budget violations   all 0.000000     lower  NaN  NaN 5.0                                       batches audited above budget 20
+      Guardrail: HOLD rate <= 0.4   all 0.000000    higher  NaN  NaN NaN                              1 = pass, 0 = fail (constrained primary)
+
+-- slices
+slice  true_error_rate  est_error_rate    dec  is_bad
+   V1             0.01        0.000000   HOLD       0
+   V2             0.03        0.000000   HOLD       0
+   V3             0.08        0.104000   HOLD       1
+   V4             0.15        0.050000   HOLD       1
+   V5             0.30        0.346538 REWORK       1
+note: guardrail HOLD rate <= 0.4: FAIL — primary metric is not valid on its own (value=0.8)
+note: missing decision = ACCEPT; report the trivial all-HOLD / all-REWORK baselines next to your PoC
+
+wrote out\t12_demo\metrics_poc.json
+
+== T12 · Vendor Batch Acceptance · run=simulated_balanced
+   gt=out\t12_demo\input\gt\batch_truth.csv
+   pred=out\t12_demo\balanced\batch_decisions.csv
+   params={'max_hold_rate': 0.4}
+                           metric slice  value direction  num  den   N                                                                  unit
+MAE error-rate estimate [PRIMARY]   all 0.0432     lower  NaN  NaN 5.0                             mean |est - true| over batches (fraction)
+       Bad-batch Recall [PRIMARY]   all 1.0000    higher  3.0  3.0 NaN bad batches not ACCEPTed / bad batches (reported separately from MAE)
+                False reject rate   all 0.0000     lower  0.0  2.0 NaN                            good batches sent to REWORK / good batches
+                        HOLD rate   all 1.0000     lower  5.0  5.0 NaN                                             batches on HOLD / batches
+                      CI coverage   all 1.0000    higher  NaN  NaN 5.0          batches whose CI contains true rate / batches (nominal 0.95)
+                Budget violations   all 0.0000     lower  NaN  NaN 5.0                                       batches audited above budget 20
+      Guardrail: HOLD rate <= 0.4   all 0.0000    higher  NaN  NaN NaN                              1 = pass, 0 = fail (constrained primary)
+
+-- slices
+slice  true_error_rate  est_error_rate  dec  is_bad
+   V1             0.01           0.000 HOLD       0
+   V2             0.03           0.000 HOLD       0
+   V3             0.08           0.084 HOLD       1
+   V4             0.15           0.052 HOLD       1
+   V5             0.30           0.226 HOLD       1
+note: guardrail HOLD rate <= 0.4: FAIL — primary metric is not valid on its own (value=1.0)
+note: missing decision = ACCEPT; report the trivial all-HOLD / all-REWORK baselines next to your PoC
+
+wrote out\t12_demo\metrics_balanced.json
+
+== T12 · Vendor Batch Acceptance · run=simulated_sequential
+   gt=out\t12_demo\input\gt\batch_truth.csv
+   pred=out\t12_demo\sequential\batch_decisions.csv
+   params={'max_hold_rate': 0.4}
+                           metric slice  value direction  num  den   N                                                                  unit
+MAE error-rate estimate [PRIMARY]   all 0.0456     lower  NaN  NaN 5.0                             mean |est - true| over batches (fraction)
+       Bad-batch Recall [PRIMARY]   all 1.0000    higher  3.0  3.0 NaN bad batches not ACCEPTed / bad batches (reported separately from MAE)
+                False reject rate   all 0.0000     lower  0.0  2.0 NaN                            good batches sent to REWORK / good batches
+                        HOLD rate   all 0.8000     lower  4.0  5.0 NaN                                             batches on HOLD / batches
+                      CI coverage   all 1.0000    higher  NaN  NaN 5.0          batches whose CI contains true rate / batches (nominal 0.95)
+                Budget violations   all 0.0000     lower  NaN  NaN 5.0                                       batches audited above budget 20
+      Guardrail: HOLD rate <= 0.4   all 0.0000    higher  NaN  NaN NaN                              1 = pass, 0 = fail (constrained primary)
+
+-- slices
+slice  true_error_rate  est_error_rate    dec  is_bad
+   V1             0.01           0.000   HOLD       0
+   V2             0.03           0.000   HOLD       0
+   V3             0.08           0.104   HOLD       1
+   V4             0.15           0.050   HOLD       1
+   V5             0.30           0.236 REWORK       1
+note: guardrail HOLD rate <= 0.4: FAIL — primary metric is not valid on its own (value=0.8)
+note: missing decision = ACCEPT; report the trivial all-HOLD / all-REWORK baselines next to your PoC
+
+wrote out\t12_demo\metrics_sequential.json
+
+== T12 · Vendor Batch Acceptance · run=simulated_all_hold
+   gt=out\t12_demo\input\gt\batch_truth.csv
+   pred=out\t12_demo\all_hold\batch_decisions.csv
+   params={'max_hold_rate': 0.4}
+                           metric slice  value direction  num  den   N                                                                  unit
+MAE error-rate estimate [PRIMARY]   all   0.06     lower  NaN  NaN 5.0                             mean |est - true| over batches (fraction)
+       Bad-batch Recall [PRIMARY]   all   1.00    higher  3.0  3.0 NaN bad batches not ACCEPTed / bad batches (reported separately from MAE)
+                False reject rate   all   0.00     lower  0.0  2.0 NaN                            good batches sent to REWORK / good batches
+                        HOLD rate   all   1.00     lower  5.0  5.0 NaN                                             batches on HOLD / batches
+                      CI coverage   all   0.80    higher  NaN  NaN 5.0          batches whose CI contains true rate / batches (nominal 0.95)
+                Budget violations   all   0.00     lower  NaN  NaN 5.0                                       batches audited above budget 20
+      Guardrail: HOLD rate <= 0.4   all   0.00    higher  NaN  NaN NaN                              1 = pass, 0 = fail (constrained primary)
+
+-- slices
+slice  true_error_rate  est_error_rate  dec  is_bad
+   V1             0.01            0.00 HOLD       0
+   V2             0.03            0.05 HOLD       0
+   V3             0.08            0.10 HOLD       1
+   V4             0.15            0.15 HOLD       1
+   V5             0.30            0.55 HOLD       1
+note: guardrail HOLD rate <= 0.4: FAIL — primary metric is not valid on its own (value=1.0)
+note: missing decision = ACCEPT; report the trivial all-HOLD / all-REWORK baselines next to your PoC
+
+wrote out\t12_demo\metrics_all_hold.json
+
+== T12 · Vendor Batch Acceptance · run=simulated_all_rework
+   gt=out\t12_demo\input\gt\batch_truth.csv
+   pred=out\t12_demo\all_rework\batch_decisions.csv
+   params={'max_hold_rate': 0.4}
+                           metric slice  value direction  num  den   N                                                                  unit
+MAE error-rate estimate [PRIMARY]   all   0.06     lower  NaN  NaN 5.0                             mean |est - true| over batches (fraction)
+       Bad-batch Recall [PRIMARY]   all   1.00    higher  3.0  3.0 NaN bad batches not ACCEPTed / bad batches (reported separately from MAE)
+                False reject rate   all   1.00     lower  2.0  2.0 NaN                            good batches sent to REWORK / good batches
+                        HOLD rate   all   0.00     lower  0.0  5.0 NaN                                             batches on HOLD / batches
+                      CI coverage   all   0.80    higher  NaN  NaN 5.0          batches whose CI contains true rate / batches (nominal 0.95)
+                Budget violations   all   0.00     lower  NaN  NaN 5.0                                       batches audited above budget 20
+      Guardrail: HOLD rate <= 0.4   all   1.00    higher  NaN  NaN NaN                              1 = pass, 0 = fail (constrained primary)
+
+-- slices
+slice  true_error_rate  est_error_rate    dec  is_bad
+   V1             0.01            0.00 REWORK       0
+   V2             0.03            0.05 REWORK       0
+   V3             0.08            0.10 REWORK       1
+   V4             0.15            0.15 REWORK       1
+   V5             0.30            0.55 REWORK       1
+note: guardrail HOLD rate <= 0.4: PASS (value=0.0)
+note: missing decision = ACCEPT; report the trivial all-HOLD / all-REWORK baselines next to your PoC
+
+wrote out\t12_demo\metrics_all_rework.json
+Baseline: `simulated_baseline` (git aabff13, seed 42) · PoC: `simulated_poc` (git aabff13, seed 42)
+
+| Metric (unit) | Slice | Baseline | PoC | Δ abs | Δ rel | Better | N |
+|---|---|---|---|---|---|---|---|
+| **MAE error-rate estimate** (mean |est - true| over batches (fraction)) | all | 0.0600 | 0.0421 | -0.0179 | -29.8% | lower | 5 |
+| **Bad-batch Recall** (bad batches not ACCEPTed / bad batches (reported separately from MAE)) | all | 1.0000 | 1.0000 | 0.0000 | +0.0% | higher | None |
+| False reject rate (good batches sent to REWORK / good batches) | all | 0.0000 | 0.0000 | 0.0000 | baseline=0 | lower | None |
+| HOLD rate (batches on HOLD / batches) | all | 0.8000 | 0.8000 | 0.0000 | +0.0% | lower | None |
+| CI coverage (batches whose CI contains true rate / batches (nominal 0.95)) | all | 0.8000 | 1.0000 | 0.2000 | +25.0% | higher | 5 |
+| Budget violations (batches audited above budget 20) | all | 0.0000 | 0.0000 | 0.0000 | baseline=0 | lower | 5 |
+| Guardrail: HOLD rate <= 0.4 (1 = pass, 0 = fail (constrained primary)) | all | 0.0000 | 0.0000 | 0.0000 | baseline=0 | higher | None |
+| Runtime / 100 items (s) | all | 0.0246 | 0.0226 | | | lower | |
+Baseline: `simulated_poc` (git aabff13, seed 42) · PoC: `simulated_sequential` (git aabff13, seed 42)
+
+| Metric (unit) | Slice | Baseline | PoC | Δ abs | Δ rel | Better | N |
+|---|---|---|---|---|---|---|---|
+| **MAE error-rate estimate** (mean |est - true| over batches (fraction)) | all | 0.0421 | 0.0456 | 0.0035 | +8.3% | lower | 5 |
+| **Bad-batch Recall** (bad batches not ACCEPTed / bad batches (reported separately from MAE)) | all | 1.0000 | 1.0000 | 0.0000 | +0.0% | higher | None |
+| False reject rate (good batches sent to REWORK / good batches) | all | 0.0000 | 0.0000 | 0.0000 | baseline=0 | lower | None |
+| HOLD rate (batches on HOLD / batches) | all | 0.8000 | 0.8000 | 0.0000 | +0.0% | lower | None |
+| CI coverage (batches whose CI contains true rate / batches (nominal 0.95)) | all | 1.0000 | 1.0000 | 0.0000 | +0.0% | higher | 5 |
+| Budget violations (batches audited above budget 20) | all | 0.0000 | 0.0000 | 0.0000 | baseline=0 | lower | 5 |
+| Guardrail: HOLD rate <= 0.4 (1 = pass, 0 = fail (constrained primary)) | all | 0.0000 | 0.0000 | 0.0000 | baseline=0 | higher | None |
+| Runtime / 100 items (s) | all | 0.0226 | 0.0372 | | | lower | |

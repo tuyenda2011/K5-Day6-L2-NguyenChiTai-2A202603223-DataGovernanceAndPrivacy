@@ -1,0 +1,15 @@
+OK   fixtures\t01_coverage\manifest.csv
+OK   fixtures\t02_raw_qc\manifest.csv
+OK   fixtures\t03_synthetic\manifest.csv
+OK   fixtures\t04_sensor_sync\manifest.csv
+OK   fixtures\t05_near_duplicate\manifest.csv
+OK   fixtures\t06_release_gate\manifest.csv
+OK   fixtures\t07_redaction\manifest.csv
+OK   fixtures\t08_deletion\manifest.csv
+OK   fixtures\t09_privacy_gate\manifest.csv
+OK   fixtures\t10_domain_shift\manifest.csv
+OK   fixtures\t11_label_errors\manifest.csv
+OK   fixtures\t12_vendor_batches\manifest.csv
+OK   fixtures\t13_rare_mining\manifest.csv
+OK   fixtures\t14_auto_annotation\manifest.csv
+14 manifests, 0 failing
