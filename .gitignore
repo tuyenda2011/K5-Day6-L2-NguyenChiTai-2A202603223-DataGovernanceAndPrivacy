@@ -32,3 +32,6 @@ __pycache__/
 .DS_Store
 .idea/
 .vscode/
+
+# Slide source (LaTeX); only the compiled PDF is committed
+demo/T12_slides/
