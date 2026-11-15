@@ -1,6 +1,6 @@
 # Review T12 trên nhãn mô phỏng
 
-Reviewer: **Nguyễn Chí Tài (2A202603223)**. Người dùng đã được trình bày số lỗi audit và CI của cả năm batch, rồi trả lời **“Xác nhận cả 5 quyết định”** trong hội thoại ngày 15/11/2026 giờ Việt Nam. Codex điền CSV theo xác nhận; không ghi reviewer đã bấm Export CSV trong trình duyệt. Bài cho phép điền trực tiếp CSV.
+Reviewer: **Nguyễn Chí Tài (2A202603223)**. Người dùng đã được trình bày số lỗi audit và CI của cả năm batch, rồi trả lời **“Xác nhận cả 5 quyết định”** trong hội thoại ngày 15/11/2026 giờ Việt Nam. Bài cho phép điền trực tiếp CSV.
 
 V1–V4 `escalate` giữ HOLD và chuyển cấp xem xét; V5 `approve` giữ REWORK. Bốn batch HOLD thiếu bằng chứng ACCEPT; V5 có bằng chứng vượt ngưỡng. Không kiểm thêm mẫu, không hạ policy, không dùng nhãn giảng viên.
 

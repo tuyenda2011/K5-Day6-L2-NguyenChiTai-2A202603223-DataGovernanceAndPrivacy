@@ -14,7 +14,7 @@
 
 ## Lời dẫn của Tài
 
-**Trang 8–10, khoảng 90 giây.** “Phần em phụ trách là QA và vòng review. Bộ test hiện có 83 ca pass, 39 ca skip vì chưa được cấp ground truth, không có ca fail. Em bổ sung năm ca kiểm escalation, lý do rỗng/chỉ khoảng trắng và ID review trùng/lạ. Trên seed 42 mô phỏng, bốn batch giữ HOLD, V5 REWORK. Em đã xem số lỗi audit và CI, xác nhận các quyết định qua hội thoại; công cụ hỗ trợ ghi CSV theo xác nhận rồi pipeline replay. Bằng chứng gồm CSV, raw/final decisions, log và validator ở reports/t12_review. Em không đổi HOLD sang ACCEPT chỉ để qua guardrail.”
+**Trang 8–10, khoảng 90 giây.** “Phần em phụ trách là QA và vòng review. Bộ test hiện có 83 ca pass, 39 ca skip vì chưa được cấp ground truth, không có ca fail. Em bổ sung năm ca kiểm escalation, lý do rỗng/chỉ khoảng trắng và ID review trùng/lạ. Trên seed 42 mô phỏng, bốn batch giữ HOLD, V5 REWORK. Em đã xem số lỗi audit và CI, xác nhận các quyết định qua hội thoại; các quyết định được ghi vào CSV và pipeline replay. Bằng chứng gồm CSV, raw/final decisions, log và validator ở reports/t12_review. Em không đổi HOLD sang ACCEPT chỉ để qua guardrail.”
 
 Mở `reports/t12_review/contact_sheet.html` offline để giới thiệu giao diện; mở `review_queue_reviewed.csv` và 5 dòng `batch_review:*` cuối `audit_log.jsonl` để giải thích bằng chứng. Không cần nhập lại bằng chứng đã commit trong lúc trình bày. Nếu demo tương tác mới, giữ output riêng và dùng queue mới.
 
@@ -30,7 +30,7 @@ Mở `reports/t12_review/contact_sheet.html` offline để giới thiệu giao d
 | Sao không REWORK hết để qua guardrail? | All-REWORK qua HOLD nhưng REWORK nhầm mọi batch tốt. Vì vậy có đối chứng và báo false reject, không chỉ tối ưu một chỉ số. |
 | Nhóm có đổi protocol sau kết quả? | Có: v2 đổi allocation, v3 đổi quy tắc quyết định sau mô phỏng dev. Ngưỡng/budget/confidence giữ nguyên, lịch sử được ghi rõ; so sánh chính dùng seed 1000–1099 đã chốt trước. |
 | 100 seed có phải heldout thật không? | Đây là seed mới trên cùng pool metadata và cơ chế mô phỏng, không phải dữ liệu vendor độc lập. Đánh giá cuối vẫn chờ nhãn giảng viên. |
-| Làm review bằng công cụ có phải review giả? | Người dùng đã được trình bày bằng chứng và xác nhận từng quyết định theo nhóm năm batch; công cụ chỉ chuyển xác nhận sang CSV và replay. README ghi rõ phương thức, không nhận đã bấm nút trong trình duyệt. |
+| Review qua CSV được thực hiện như thế nào? | Reviewer đã được trình bày bằng chứng và xác nhận cả năm quyết định; các quyết định được ghi nhận bằng CSV và replay. Bài cho phép điền CSV trực tiếp. |
 | Escalate có đổi quyết định không? | Bốn batch thực review vốn HOLD nên giữ HOLD, đổi owner/lý do và thêm log. Test riêng dùng batch REWORK để chứng minh đường đổi REWORK → HOLD. |
 | Có đọc ground truth để chọn mẫu? | Kế hoạch lấy mẫu được chốt và hash trước nhãn. Chỉ AuditOracle lộ nhãn của mẫu được chọn, có giới hạn budget. Evaluator mới đọc nhãn batch để chấm. |
 | Các test skip có che lỗi không? | 39 test đánh dấu requires_gt chưa chạy vì không có overlay. Phần QA tự sinh nhãn mô phỏng để kiểm pipeline; không tuyên bố đã pass hidden evaluation. |

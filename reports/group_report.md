@@ -129,7 +129,7 @@ Latency gốc ở bảng 1 và machine trong JSON nguồn; latency tái lập �
 
 ## 07 · Review của con người và quyết định
 
-Ngày 15/11/2026 giờ Việt Nam, Nguyễn Chí Tài đã xem thông tin tóm tắt lỗi audit/CI và **xác nhận cả năm quyết định qua hội thoại**. Codex hỗ trợ điền CSV theo xác nhận; không tuyên bố reviewer đã thao tác trình duyệt. Bài cho phép điền CSV trực tiếp. Không kiểm thêm mẫu.
+Ngày 15/11/2026 giờ Việt Nam, Nguyễn Chí Tài đã xem thông tin tóm tắt lỗi audit/CI và **xác nhận cả năm quyết định qua hội thoại**. Bài cho phép điền CSV trực tiếp. Không kiểm thêm mẫu.
 
 <!-- BEGIN GENERATED review -->
 
@@ -191,7 +191,7 @@ Fixture CC0 không có PII thực. Ảnh thật cần quyền sử dụng, xử 
 | Học viên | Git author/email | Vai trò và bằng chứng | Commit | Trình bày |
 |---|---|---|---|---|
 | Đặng Anh Tuyền (2A202603039) | `tuyenda2011` / `tuyenanhdang2011@gmail.com` | Pipeline, baseline, protocol, demo/study/submission, báo cáo kỹ thuật và PDF | `2b5cccd`, `7022eea`, `e81b153`, `697d81f`, `2fb45e4` | Đề xuất phần bài toán, phương pháp, demo; chưa xác nhận lịch thực tế |
-| Nguyễn Chí Tài (2A202603223) | `nguyen-chi-tai-2005` / `chitain26@gmail.com` | Test review thành công/lỗi, tái lập QA, review đã xác nhận, báo cáo nhóm và ghi chú slide/debate, có hỗ trợ Codex | `aabff13` và SHA trong `team_contributions.csv` | Chuẩn bị QA, review, failure modes và limitations; buổi trình bày chưa diễn ra |
+| Nguyễn Chí Tài (2A202603223) | `nguyen-chi-tai-2005` / `chitain26@gmail.com` | Test review thành công/lỗi, tái lập QA, review đã xác nhận, báo cáo nhóm và ghi chú slide/debate | `aabff13` và SHA trong `team_contributions.csv` | Chuẩn bị QA, review, failure modes và limitations; buổi trình bày chưa diễn ra |
 
 `team_contributions.csv` là nguồn SHA cụ thể. Không thêm thành viên hư cấu từ template và không ghi đã trình bày khi mới chuẩn bị.
 
