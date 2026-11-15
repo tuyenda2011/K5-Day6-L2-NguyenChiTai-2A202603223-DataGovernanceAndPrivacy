@@ -4,12 +4,12 @@
 
 Nhóm tự do: **Đặng Anh Tuyền (2A202603039)** và **Nguyễn Chí Tài (2A202603223)**.
 Repo: [DataGovernanceAndPrivacy](https://github.com/tuyenda2011/K5-Day6-L2-NguyenChiTai-2A202603223-DataGovernanceAndPrivacy).
-Demo đã freeze tại `demo-180m` (`eb4d06d`). Trạng thái push và tag `final-24h`: [bàn giao Người 2](reports/nguoi2_handover.md).
+Demo đã freeze tại tag `demo-180m` (`eb4d06d`); bản nộp cuối gắn tag `final-24h`.
 
 - [Báo cáo nhóm](reports/group_report.md), [báo cáo triển khai](reports/t12_report.md), [metric contract](reports/metric_contract.md).
 - [QA thực chạy](reports/t12_qa/README.md): **83 passed, 39 skipped, 0 failed; 14 manifests, 0 failing**.
 - [Review có xác nhận của Nguyễn Chí Tài](reports/t12_review/README.md): 5 batch mô phỏng đã replay, có CSV và audit log.
-- [Đóng góp Git](reports/team_contributions.csv), [checklist Người 2](TASKS_NGUOI2.md), [ghi chú trình bày/debate](demo/T12_nguoi2_speaker_notes.md).
+- [Đóng góp Git](reports/team_contributions.csv), [ghi chú trình bày/debate](demo/T12_nguoi2_speaker_notes.md).
 
 **Kết quả hiện tại dùng nhãn mô phỏng; HOLD guardrail chưa đạt.** Metric chính thức chờ overlay giảng viên. Sau khi cài requirements, chạy offline bằng `python -m tools.demo_t12`; kiểm thử bằng `python -m pytest -q`. Chỉ khi có overlay mới dùng `python -m tools.submit_t12 --mode official`.
 

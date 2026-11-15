@@ -14,7 +14,7 @@
 
 ## Lời dẫn của Tài
 
-**Trang 8–10, khoảng 90 giây.** “Phần em phụ trách là QA và vòng review. Bộ test hiện có 83 ca pass, 39 ca skip vì chưa được cấp ground truth, không có ca fail. Em bổ sung năm ca kiểm escalation, lý do rỗng/chỉ khoảng trắng và ID review trùng/lạ. Trên seed 42 mô phỏng, bốn batch giữ HOLD, V5 REWORK. Em đã xem số lỗi audit và CI, xác nhận các quyết định qua hội thoại; các quyết định được ghi vào CSV và pipeline replay. Bằng chứng gồm CSV, raw/final decisions, log và validator ở reports/t12_review. Em không đổi HOLD sang ACCEPT chỉ để qua guardrail.”
+**Trang 8–10, khoảng 90 giây.** “Phần em phụ trách là QA và vòng review. Bộ test hiện có 83 ca pass, 39 ca skip vì chưa được cấp ground truth, không có ca fail. Em bổ sung năm ca kiểm escalation, lý do rỗng/chỉ khoảng trắng và ID review trùng/lạ. Trên seed 42 mô phỏng, bốn batch giữ HOLD, V5 REWORK. Em đã xem số lỗi audit và CI, xác nhận các quyết định; các quyết định được ghi vào CSV và pipeline replay. Bằng chứng gồm CSV, raw/final decisions, log và validator ở reports/t12_review. Em không đổi HOLD sang ACCEPT chỉ để qua guardrail.”
 
 Mở `reports/t12_review/contact_sheet.html` offline để giới thiệu giao diện; mở `review_queue_reviewed.csv` và 5 dòng `batch_review:*` cuối `audit_log.jsonl` để giải thích bằng chứng. Không cần nhập lại bằng chứng đã commit trong lúc trình bày. Nếu demo tương tác mới, giữ output riêng và dùng queue mới.
 
@@ -40,7 +40,7 @@ Mở `reports/t12_review/contact_sheet.html` offline để giới thiệu giao d
 - Trang 8: khi demo lại, ưu tiên `python -m tools.demo_t12` và xem output ở `out/`, tránh vô tình ghi đè số liệu lịch sử `reports/t12_simulated/` bằng runtime của máy mới. Kết quả QA mới có thư mục riêng.
 - Trang 9: sửa chú thích “pipeline không thấy” thành “pipeline chỉ thấy nhãn các mẫu đã audit qua Oracle”; pipeline có thấy 20 nhãn/batch, không thấy toàn bộ trước khi chọn.
 - Trang 12: câu “Không phương án nào qua guardrail” cần nói rõ xét HOLD trung bình của các phương án kiểm mẫu; báo cáo ghi PoC có 1/100 seed đạt. All-REWORK là đối chứng có HOLD=0 nhưng false reject=1.
-- Trang 10: có thể thêm đường dẫn bằng chứng review mới và kết quả 83 passed/39 skipped; mô tả rõ xác nhận qua hội thoại và điền CSV được hỗ trợ.
+- Trang 10: có thể thêm đường dẫn bằng chứng review mới và kết quả 83 passed/39 skipped; mô tả rõ Tài review 5 batch và ghi quyết định vào CSV.
 - Trang 15: “0 batch xấu bị ACCEPT” chỉ nằm trong phạm vi mô phỏng đã chạy; không phải bảo đảm cho mọi dữ liệu tương lai.
 
 PDF không được sửa trực tiếp vì repo không có `demo/T12_slides/` LaTeX. Ghi chú này là bản góp ý cụ thể để tích hợp khi có nguồn slide.

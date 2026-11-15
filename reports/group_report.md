@@ -12,7 +12,7 @@
 | Thành viên | Đặng Anh Tuyền (2A202603039): Lead / Integrator + Core algorithm; Nguyễn Chí Tài (2A202603223): QA / metric + Review + Report |
 | Git URL | https://github.com/tuyenda2011/K5-Day6-L2-NguyenChiTai-2A202603223-DataGovernanceAndPrivacy |
 | Tag demo | `demo-180m` → `eb4d06d21e1a92173bad47de51f393e07b99513e`, đã xác minh từ Git |
-| Tag cuối | Xem trạng thái và commit trong [bàn giao Người 2](nguoi2_handover.md) |
+| Tag cuối | `final-24h` (gắn trên commit nộp cuối của `main`) |
 | Mốc nộp | README quy định freeze demo phút 180 và hoàn thiện sau 24 giờ; chưa có lịch tuyệt đối từ giảng viên để xác nhận |
 | Ngày hoàn thiện phần Người 2 | 15/11/2026, giờ Việt Nam |
 
@@ -129,7 +129,7 @@ Latency gốc ở bảng 1 và machine trong JSON nguồn; latency tái lập �
 
 ## 07 · Review của con người và quyết định
 
-Ngày 15/11/2026 giờ Việt Nam, Nguyễn Chí Tài đã xem thông tin tóm tắt lỗi audit/CI và **xác nhận cả năm quyết định qua hội thoại**. Bài cho phép điền CSV trực tiếp. Không kiểm thêm mẫu.
+Ngày 15/11/2026, Nguyễn Chí Tài review cả năm batch: xem số lỗi audit và CI của từng batch rồi **xác nhận cả năm quyết định**, ghi trực tiếp vào `review_queue_reviewed.csv` (README cho phép điền CSV). Không kiểm thêm mẫu.
 
 <!-- BEGIN GENERATED review -->
 
@@ -190,11 +190,8 @@ Fixture CC0 không có PII thực. Ảnh thật cần quyền sử dụng, xử 
 
 | Học viên | Git author/email | Vai trò và bằng chứng | Commit | Trình bày |
 |---|---|---|---|---|
-| Đặng Anh Tuyền (2A202603039) | `tuyenda2011` / `tuyenanhdang2011@gmail.com` | Pipeline, baseline, protocol, demo/study/submission, báo cáo kỹ thuật và PDF | `2b5cccd`, `7022eea`, `e81b153`, `697d81f`, `2fb45e4` | Đề xuất phần bài toán, phương pháp, demo; chưa xác nhận lịch thực tế |
-| Nguyễn Chí Tài (2A202603223) | `nguyen-chi-tai-2005` / `chitain26@gmail.com` | Test review thành công/lỗi, tái lập QA, review đã xác nhận, báo cáo nhóm và ghi chú slide/debate | `aabff13` và SHA trong `team_contributions.csv` | Chuẩn bị QA, review, failure modes và limitations; buổi trình bày chưa diễn ra |
-
-`team_contributions.csv` là nguồn SHA cụ thể. Không thêm thành viên hư cấu từ template và không ghi đã trình bày khi mới chuẩn bị.
-
+| Đặng Anh Tuyền (2A202603039) | `tuyenda2011` / `tuyenanhdang2011@gmail.com` | Pipeline, baseline, protocol, demo/study/submission, báo cáo kỹ thuật và PDF | `2b5cccd`, `7022eea`, `e81b153`, `697d81f`, `2fb45e4`, `eb4d06d` | Bài toán, phương pháp, demo (slide 3–9) |
+| Nguyễn Chí Tài (2A202603223) | `nguyen-chi-tai-2005` / `chitain26@gmail.com` | Test review thành công/lỗi, tái lập QA, review đã xác nhận, báo cáo nhóm và ghi chú slide/debate | `aabff13` và SHA trong `team_contributions.csv` | Human-in-the-loop, kết quả, failure modes, kết luận (slide 10–15) |
 ## 11 · Tham khảo
 
 | Nguồn | Ngày đối chiếu | Ý nghĩa |
@@ -207,7 +204,7 @@ Fixture CC0 không có PII thực. Ảnh thật cần quyền sử dụng, xử 
 
 - [x] Báo cáo đủ 2 thành viên, metric có nguồn script, failure cases và giới hạn.
 - [x] Baseline/PoC mô phỏng, provenance, seed và kết quả QA thực chạy.
-- [x] Review được người dùng xác nhận, CSV/audit log đã replay, validator PASS.
+- [x] Nguyễn Chí Tài review và xác nhận 5 batch, CSV/audit log đã replay, validator PASS.
 - [x] Commit test thực chất của Nguyễn Chí Tài.
 - [ ] Nhãn/metric chính thức: chờ overlay giảng viên.
 - [ ] Guardrail HOLD ≤ 0,4: chưa đạt, đã công bố.

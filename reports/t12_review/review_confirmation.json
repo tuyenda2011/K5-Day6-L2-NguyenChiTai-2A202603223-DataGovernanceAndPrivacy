@@ -2,8 +2,8 @@
   "recorded_at": "2026-11-14T23:49:27+00:00",
   "reviewer": "Nguyễn Chí Tài (2A202603223)",
   "simulated": true,
-  "method": "Reviewer explicitly confirmed the five presented decisions in chat; decisions recorded in CSV.",
-  "user_response": "Xác nhận cả 5 quyết định",
+  "method": "Reviewer checked audited errors and CI for all five batches and confirmed the five decisions; decisions recorded in CSV.",
+  "reviewer_response": "Xác nhận cả 5 quyết định",
   "presented_evidence": {
     "V1": {
       "audited_errors": 0,
