@@ -105,7 +105,10 @@ python -m tools.submit_t12 --mode official
 - [x] Điền dòng của Tài trong [reports/team_contributions.csv](reports/team_contributions.csv):
       `git_author_name`, `git_email`, `commit_shas`, `evidence_note`, `presenter`
 - [x] `python -m pytest -q` lần cuối → 0 failed
-- [ ] Push lên `main`, báo Tuyền để gắn tag `final-24h`
+- [x] Tạo các commit thực chất trên `main` bằng đúng danh tính Git của Tài.
+- [ ] Push lên GitHub: đã thử nhưng thiếu đăng nhập (`unable to get password from user`); cần tài khoản có quyền ghi.
+- [ ] Gửi thông báo cho Tuyền: nội dung bàn giao đã soạn trong `reports/nguoi2_handover.md`, chưa có kênh gửi được xác định.
+- [ ] Publish tag `final-24h`: chuẩn bị tag local sau commit bàn giao cuối, chưa đẩy lên GitHub.
 
 ---
 

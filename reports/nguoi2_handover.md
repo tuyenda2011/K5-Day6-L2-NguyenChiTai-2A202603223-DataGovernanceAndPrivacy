@@ -12,7 +12,28 @@
 
 ## Trạng thái Git và nộp bài
 
-Đang hoàn tất commit tài liệu và thử push `main`; kết quả cuối được cập nhật tại đây trước bàn giao. Tag `demo-180m` đã xác minh trỏ đến `eb4d06d21e1a92173bad47de51f393e07b99513e`. Tag `final-24h` chưa được ghi nhận trong bản clone ban đầu.
+Đã tạo các commit thực chất trên `main` bằng đúng danh tính Tài:
+
+| Commit | Nội dung |
+|---|---|
+| `aabff13` | 5 ca QA review và đọc CSV đúng kiểu |
+| `4eb02b4` | Review có xác nhận, raw/final decisions và audit evidence |
+| `89a0377` | Báo cáo nhóm, bảng sinh từ dữ liệu, kết quả QA và speaker notes |
+| `bd44450` | Thông tin đóng góp, checklist và liên kết README |
+
+Đã thử `git push origin main` nhưng Git chưa có thông tin đăng nhập, báo `unable to get password from user`. **Các commit chưa được đẩy lên GitHub.** Đây là lỗi xác thực, không phải từ chối quyền ghi đã được xác minh. Người dùng cần đăng nhập tài khoản có quyền ghi; author/email commit không thay thế đăng nhập GitHub. Chưa gửi mật khẩu/token hoặc tự thay URL remote.
+
+Tag `demo-180m` đã xác minh trỏ đến `eb4d06d21e1a92173bad47de51f393e07b99513e`. Chuẩn bị tag **local** `final-24h` cho commit bàn giao cuối; tag chưa được publish. Tag freeze gói hiện tại, không chứng nhận đạt guardrail hoặc có nhãn chính thức. Có thể kiểm bằng `git show final-24h`.
+
+Sau khi đăng nhập, từ repo chạy:
+
+```bash
+git push origin main
+git push origin final-24h
+git shortlog -sne --all
+```
+
+Nếu branch remote đã thay đổi, fetch và tích hợp thay đổi trước khi push; không force push. Bản sao dự phòng Git tại `out/nguoi2_delivery.bundle` và patch của các commit tại `out/nguoi2_patches/` được tạo sau commit cuối, ngoài vùng nộp source.
 
 ## Phần phụ thuộc bên ngoài
 

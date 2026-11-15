@@ -1,0 +1,6 @@
+PASS: recorded pytest and manifest checks
+PASS: reproduced metrics equal archived simulated metrics
+PASS: committed review artifacts validate; guardrail failure remains disclosed
+PASS: generated report tables are stable and template fields are filled
+PASS: local Markdown document links resolve
+PASS: contribution SHAs resolve to the confirmed Git identity
