@@ -26,11 +26,13 @@ Các commit thực chất được tiếp tục trên nhánh **`nguyen-chi-tai`*
 
 Nhánh dành cho phần việc của Tài: `nguyen-chi-tai`, repo đích `https://github.com/tuyenda2011/K5-Day6-L2-NguyenChiTai-2A202603223-DataGovernanceAndPrivacy.git`. Theo yêu cầu mới nhất, công việc được publish bằng nhánh riêng để nhóm xem xét trước khi tích hợp vào `main`.
 
-Đã xác thực thành công tài khoản GitHub **`nguyen-chi-tai-2005`** bằng Git Credential Manager. Push nhánh riêng bị GitHub từ chối **HTTP 403** vì tài khoản chưa có quyền ghi repo của Tuyền. API xác nhận `pull=true`, `push=false`; không có lời mời cộng tác đang chờ cho repo này. **Nhánh và các commit chưa được push lên repo gốc.** Cần chủ repo cấp quyền Write cho tài khoản trên, hoặc chọn quy trình fork/pull request. Không yêu cầu gửi mật khẩu/token trong hội thoại.
+Đã xác thực tài khoản GitHub **`nguyen-chi-tai-2005`** và **push thành công nhánh `nguyen-chi-tai` lên repo gốc** sau khi được cấp quyền ghi. Đã đối chiếu SHA remote khớp local khi publish (`112170b10ca986f5f43069d49dfca0fc7076c8b6`); phần cập nhật trạng thái này được commit tiếp trên cùng nhánh. Lỗi HTTP 403 ban đầu đã được giải quyết.
+
+Nhánh đã publish: https://github.com/tuyenda2011/K5-Day6-L2-NguyenChiTai-2A202603223-DataGovernanceAndPrivacy/tree/nguyen-chi-tai
 
 Tag `demo-180m` đã xác minh trỏ đến `eb4d06d21e1a92173bad47de51f393e07b99513e`. Chuẩn bị tag **local** `final-24h` cho commit bàn giao cuối; tag chưa được publish. Tag freeze gói hiện tại, không chứng nhận đạt guardrail hoặc có nhãn chính thức. Có thể kiểm bằng `git show final-24h`.
 
-Sau khi được cấp và chấp nhận quyền Write, từ repo chạy:
+Các lần cập nhật tiếp theo trên nhánh này:
 
 ```bash
 git push --set-upstream origin nguyen-chi-tai

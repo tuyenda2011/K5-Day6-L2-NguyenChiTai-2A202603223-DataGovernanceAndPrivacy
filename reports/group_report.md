@@ -211,4 +211,5 @@ Fixture CC0 không có PII thực. Ảnh thật cần quyền sử dụng, xử 
 - [x] Commit test thực chất của Nguyễn Chí Tài.
 - [ ] Nhãn/metric chính thức: chờ overlay giảng viên.
 - [ ] Guardrail HOLD ≤ 0,4: chưa đạt, đã công bố.
-- [ ] Push/tag cuối và trình bày: xem trạng thái thực tế trong bàn giao.
+- [x] Đã push nhánh đóng góp `nguyen-chi-tai` lên repo gốc và đối chiếu SHA remote/local.
+- [ ] Publish tag cuối và trình bày: xem trạng thái thực tế trong bàn giao.
