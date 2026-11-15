@@ -12,7 +12,7 @@
 
 ## Trạng thái Git và nộp bài
 
-Đã tạo các commit thực chất trên `main` bằng đúng danh tính Tài:
+Các commit thực chất được tiếp tục trên nhánh **`nguyen-chi-tai`** bằng đúng danh tính Tài:
 
 | Commit | Nội dung |
 |---|---|
@@ -20,20 +20,23 @@
 | `4eb02b4` | Review có xác nhận, raw/final decisions và audit evidence |
 | `89a0377` | Báo cáo nhóm, bảng sinh từ dữ liệu, kết quả QA và speaker notes |
 | `bd44450` | Thông tin đóng góp, checklist và liên kết README |
+| `c647970` | Kiểm tra gói bàn giao và ghi nhận trạng thái xác thực ban đầu |
+| `e009e21` | Hoàn thiện diễn đạt báo cáo, hồ sơ review và ghi chú trình bày |
 
-Đã thử `git push origin main` nhưng Git chưa có thông tin đăng nhập, báo `unable to get password from user`. **Các commit chưa được đẩy lên GitHub.** Đây là lỗi xác thực, không phải từ chối quyền ghi đã được xác minh. Người dùng cần đăng nhập tài khoản có quyền ghi; author/email commit không thay thế đăng nhập GitHub. Chưa gửi mật khẩu/token hoặc tự thay URL remote.
+Nhánh dành cho phần việc của Tài: `nguyen-chi-tai`, repo đích `https://github.com/tuyenda2011/K5-Day6-L2-NguyenChiTai-2A202603223-DataGovernanceAndPrivacy.git`. Theo yêu cầu mới nhất, công việc được publish bằng nhánh riêng để nhóm xem xét trước khi tích hợp vào `main`.
+
+Lần thử push nhánh riêng hiện báo `unable to get password from user`: **chưa xác nhận push thành công**. Cần đăng nhập GitHub bằng tài khoản có quyền ghi; author/email commit không thay thế đăng nhập GitHub. Đang kiểm tra cơ chế đăng nhập thiết bị của Git Credential Manager có sẵn; không yêu cầu gửi mật khẩu/token trong hội thoại.
 
 Tag `demo-180m` đã xác minh trỏ đến `eb4d06d21e1a92173bad47de51f393e07b99513e`. Chuẩn bị tag **local** `final-24h` cho commit bàn giao cuối; tag chưa được publish. Tag freeze gói hiện tại, không chứng nhận đạt guardrail hoặc có nhãn chính thức. Có thể kiểm bằng `git show final-24h`.
 
 Sau khi đăng nhập, từ repo chạy:
 
 ```bash
-git push origin main
-git push origin final-24h
+git push --set-upstream origin nguyen-chi-tai
 git shortlog -sne --all
 ```
 
-Nếu branch remote đã thay đổi, fetch và tích hợp thay đổi trước khi push; không force push. Bản sao dự phòng Git tại `out/nguoi2_delivery.bundle` và patch của các commit tại `out/nguoi2_patches/` được tạo sau commit cuối, ngoài vùng nộp source.
+Nếu branch remote đã thay đổi, fetch và tích hợp thay đổi trước khi push; không force push. Tag `final-24h` vẫn là bản freeze local trước các chỉnh sửa diễn đạt sau đó; lần publish nhánh này không tự publish tag. Bundle/patch trong `out/` là bản sao ở thời điểm tạo, không đại diện mặc định cho commit mới nhất.
 
 ## Phần phụ thuộc bên ngoài
 
