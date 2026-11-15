@@ -22,14 +22,15 @@ Các commit thực chất được tiếp tục trên nhánh **`nguyen-chi-tai`*
 | `bd44450` | Thông tin đóng góp, checklist và liên kết README |
 | `c647970` | Kiểm tra gói bàn giao và ghi nhận trạng thái xác thực ban đầu |
 | `e009e21` | Hoàn thiện diễn đạt báo cáo, hồ sơ review và ghi chú trình bày |
+| `fd9af2b` | Đồng bộ checklist và hướng dẫn bàn giao theo nhánh riêng |
 
 Nhánh dành cho phần việc của Tài: `nguyen-chi-tai`, repo đích `https://github.com/tuyenda2011/K5-Day6-L2-NguyenChiTai-2A202603223-DataGovernanceAndPrivacy.git`. Theo yêu cầu mới nhất, công việc được publish bằng nhánh riêng để nhóm xem xét trước khi tích hợp vào `main`.
 
-Lần thử push nhánh riêng hiện báo `unable to get password from user`: **chưa xác nhận push thành công**. Cần đăng nhập GitHub bằng tài khoản có quyền ghi; author/email commit không thay thế đăng nhập GitHub. Đang kiểm tra cơ chế đăng nhập thiết bị của Git Credential Manager có sẵn; không yêu cầu gửi mật khẩu/token trong hội thoại.
+Đã xác thực thành công tài khoản GitHub **`nguyen-chi-tai-2005`** bằng Git Credential Manager. Push nhánh riêng bị GitHub từ chối **HTTP 403** vì tài khoản chưa có quyền ghi repo của Tuyền. API xác nhận `pull=true`, `push=false`; không có lời mời cộng tác đang chờ cho repo này. **Nhánh và các commit chưa được push lên repo gốc.** Cần chủ repo cấp quyền Write cho tài khoản trên, hoặc chọn quy trình fork/pull request. Không yêu cầu gửi mật khẩu/token trong hội thoại.
 
 Tag `demo-180m` đã xác minh trỏ đến `eb4d06d21e1a92173bad47de51f393e07b99513e`. Chuẩn bị tag **local** `final-24h` cho commit bàn giao cuối; tag chưa được publish. Tag freeze gói hiện tại, không chứng nhận đạt guardrail hoặc có nhãn chính thức. Có thể kiểm bằng `git show final-24h`.
 
-Sau khi đăng nhập, từ repo chạy:
+Sau khi được cấp và chấp nhận quyền Write, từ repo chạy:
 
 ```bash
 git push --set-upstream origin nguyen-chi-tai

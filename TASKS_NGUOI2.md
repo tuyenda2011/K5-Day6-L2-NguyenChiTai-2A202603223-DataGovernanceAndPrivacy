@@ -106,7 +106,7 @@ python -m tools.submit_t12 --mode official
       `git_author_name`, `git_email`, `commit_shas`, `evidence_note`, `presenter`
 - [x] `python -m pytest -q` lần cuối → 0 failed
 - [x] Tạo các commit thực chất bằng đúng danh tính Git của Tài; nhánh bàn giao theo yêu cầu mới là `nguyen-chi-tai`.
-- [ ] Push nhánh `nguyen-chi-tai` lên repo gốc: đã thử nhưng thiếu đăng nhập (`unable to get password from user`); cần tài khoản có quyền ghi.
+- [ ] Push nhánh `nguyen-chi-tai` lên repo gốc: đã đăng nhập đúng `nguyen-chi-tai-2005`, nhưng GitHub trả HTTP 403 (`push=false`); cần Tuyền cấp quyền Write hoặc chọn fork/pull request.
 - [ ] Gửi thông báo cho Tuyền: nội dung bàn giao đã soạn trong `reports/nguoi2_handover.md`, chưa có kênh gửi được xác định.
 - [ ] Publish tag `final-24h`: chuẩn bị tag local sau commit bàn giao cuối, chưa đẩy lên GitHub.
 
